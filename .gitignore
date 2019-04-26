@@ -1,3 +1,5 @@
+.DS_Store
+
 */config/development
 */logs/log-*.php
 !*/logs/index.html
@@ -14,4 +16,28 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
+!application/*/.htaccess
+
+composer.lock
 /vendor/
+
+
+
+# IDE Files
+/nbproject/
+.idea/*
+
+## Sublime Text cache files
+
+*.tmlanguage.cache
+*.tmPreferences.cache
+
+
+*.stTheme.cache
+
+*.sublime-workspace
+
+*.sublime-project
+/tests/tests/
+
+/tests/results/
