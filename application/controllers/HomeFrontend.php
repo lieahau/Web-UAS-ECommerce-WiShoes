@@ -13,7 +13,7 @@ class HomeFrontend extends CI_Controller {
     // if click then go to list of product
     public function index()
 	{
-		
+		$this->load->view('home');
     }
 
     // show list of product
