@@ -26,18 +26,18 @@ class Frontend extends CI_Controller {
     // route: index.php
     public function index()
 	{
-        // get map of file in public/assets/*
-        // then get carousel images and brand images
+        // get map of file in /assets/database/brands and /assets/database/carousels
+        // then get brand and carousel images
         $data[Frontend::LISTBRAND] = [];
         $data[Frontend::LISTCAROUSEL] = [];
         $itemModel = $this->item_model;
-        $assets = directory_map('./public/assets/');
+        $brand_assets = directory_map('./assets/database/brands/');
         $brands = $itemModel->getAllMerk();
-        for($i = 0;$i < count($assets); $i++){
+        for($i = 0;$i < count($brand_assets); $i++){
             for($j = 0;$j < count($brands); $j++){
-                if(stripos($assets[$i], $brands[$j]->merk) === 0){
-                    array_push($data[Frontend::LISTBRAND], $assets[$i]);
-                    array_splice($assets, $i, 1);
+                if(stripos($brand_assets[$i], $brands[$j]->merk) === 0){
+                    array_push($data[Frontend::LISTBRAND], $brand_assets[$i]);
+                    array_splice($brand_assets, $i, 1);
                     $i--;
                     array_splice($brands, $j, 1);
                     break;
@@ -45,15 +45,16 @@ class Frontend extends CI_Controller {
             }
         }
 
-        for($i = 0;$i < count($assets); $i++){
-            if(stripos($assets[$i], 'carousel_') === 0){
-                array_push($data[Frontend::LISTCAROUSEL], $assets[$i]);
+        $carousel_assets = directory_map('./assets/database/carousels/');
+        for($i = 0;$i < count($carousel_assets); $i++){
+            if(stripos($carousel_assets[$i], 'carousel_') === 0){
+                array_push($data[Frontend::LISTCAROUSEL], $carousel_assets[$i]);
             }
         }
 
-        // uncomment this var dump to hide
-        var_dump($data[Frontend::LISTBRAND]);
-        var_dump($data[Frontend::LISTCAROUSEL]);
+        // comment this var dump to hide
+        // var_dump($data[Frontend::LISTBRAND]);
+        // var_dump($data[Frontend::LISTCAROUSEL]);
 		$this->load->view('home', $data);
     }
     /* -----HOME SEGMENT----- */

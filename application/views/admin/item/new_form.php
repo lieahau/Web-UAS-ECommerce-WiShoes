@@ -40,7 +40,7 @@
 
 						<form action="<?php base_url('admin/item/add') ?>" method="post" enctype="multipart/form-data" >
 							<div class="form-group">
-								<label>Nama*</label>
+								<label>Name*</label>
 								<input class="form-control <?php echo form_error('nama') ? 'is-invalid':'' ?>"
 								 type="text" name="nama" placeholder="Name" />
 								<div class="invalid-feedback">
@@ -67,7 +67,9 @@
 									<option value="" disabled selected>Choose your option</option>
 									<option value="FlatShoes">Flat Shoes</option>
 									<option value="RunningShoes">Running Shoes</option>
+									<option value="Sandals">Sandals</option>
 									<option value="SportShoes">Sport Shoes</option>
+									<option value="SportShoes">Training Shoes</option>
 								</select>
 								<div class="invalid-feedback">
 									<?php echo form_error('jenis') ?>
@@ -103,7 +105,7 @@
 							</div>
 
 							<div class="form-group">
-								<label for="iamge">Image</label>
+								<label for="image">Image</label>
 								<input class="form-control-file <?php echo form_error('image') ? 'is-invalid':'' ?>"
 								 type="file" name="image" />
 								<div class="invalid-feedback">

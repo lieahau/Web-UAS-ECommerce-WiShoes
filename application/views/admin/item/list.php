@@ -68,7 +68,7 @@
 											<?php echo $eq->harga_satuan ?>
 										</td>
 										<td>
-											<img src="<?php echo base_url('upload/item/'.$eq->image) ?>" width="64" />
+											<img src="<?php echo base_url('assets/database/shoes/'.$eq->merk.'/'.$eq->image) ?>" width="64" />
 										</td>
 										<td width="250">
 											<a href="<?php echo site_url('admin/item/edit/'.$eq->id) ?>"

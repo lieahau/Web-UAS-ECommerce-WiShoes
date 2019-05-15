@@ -99,12 +99,16 @@ class Item_model extends CI_Model
 
 	private function _uploadImage()
 	{
-		
-	    $config['upload_path']          = './upload/item/';
+		$config['upload_path']          = './assets/database/shoes/'.$this->merk.'/';
+		if(!is_dir($config['upload_path'])){
+			mkdir($config['upload_path'], 0777, TRUE);
+			copy('./assets/database/shoes/default.jpg', $config['upload_path'].'default.jpg');
+		}
+
 	    $config['allowed_types']        = 'gif|jpg|png';
 	    $config['file_name']            = uniqid();
 	    $config['overwrite']			= true;
-	    $config['max_size']             = 1024; // 1MB
+	    $config['max_size']             = 10240; // 10MB
 	    // $config['max_width']            = 1024;
 	    // $config['max_height']           = 768;
 
