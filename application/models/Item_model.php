@@ -46,12 +46,16 @@ class Item_model extends CI_Model
 		return $this->db->get($this->_table)->result();
 	}
 
+	public function getAllMerk(){
+		return $this->db->select("merk")->group_by("merk")->get($this->_table)->result();
+	}
+
 	public function getById($id){
 		return $this->db->get_where($this->_table, ["id" =>$id])->row();
 	}
 
 	public function getByMerk($merk){
-		return $this->db->get_where($this->_table, ["merk" =>$merk])->row();
+		return $this->db->get_where($this->_table, ["merk" =>$merk])->result();
 	}
 
 	public function searchByName($search){
