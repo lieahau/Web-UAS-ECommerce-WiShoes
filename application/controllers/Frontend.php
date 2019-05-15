@@ -7,6 +7,8 @@ class Frontend extends CI_Controller {
     public const LISTSEPATU = 'listsepatu';
     public const SEPATU = 'sepatu';
     public const EMPTYSEARCH = 'null';
+    public const LISTBRAND = 'listbrand';
+    public const LISTCAROUSEL = 'listcarousel';
 
     public function __construct(){
         parent::__construct();
@@ -14,6 +16,7 @@ class Frontend extends CI_Controller {
         $this->load->model("Login_model");
         $this->load->model("user_model");
         $this->load->library('form_validation');
+        $this->load->helper('directory');
     }
 
     /* -----HOME SEGMENT----- */
@@ -23,7 +26,35 @@ class Frontend extends CI_Controller {
     // route: index.php
     public function index()
 	{
-		$this->load->view('home');
+        // get map of file in public/assets/*
+        // then get carousel images and brand images
+        $data[Frontend::LISTBRAND] = [];
+        $data[Frontend::LISTCAROUSEL] = [];
+        $itemModel = $this->item_model;
+        $assets = directory_map('./public/assets/');
+        $brands = $itemModel->getAllMerk();
+        for($i = 0;$i < count($assets); $i++){
+            for($j = 0;$j < count($brands); $j++){
+                if(stripos($assets[$i], $brands[$j]->merk) === 0){
+                    array_push($data[Frontend::LISTBRAND], $assets[$i]);
+                    array_splice($assets, $i, 1);
+                    $i--;
+                    array_splice($brands, $j, 1);
+                    break;
+                }
+            }
+        }
+
+        for($i = 0;$i < count($assets); $i++){
+            if(stripos($assets[$i], 'carousel_') === 0){
+                array_push($data[Frontend::LISTCAROUSEL], $assets[$i]);
+            }
+        }
+
+        // uncomment this var dump to hide
+        var_dump($data[Frontend::LISTBRAND]);
+        var_dump($data[Frontend::LISTCAROUSEL]);
+		$this->load->view('home', $data);
     }
     /* -----HOME SEGMENT----- */
 
