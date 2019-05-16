@@ -1,0 +1,14 @@
+body{
+    background-image: url('../background.jpg'); 
+    background-size: cover;
+}
+
+.brand-container .brand-row-title .brand-col-title .brand-title{
+    text-align: center;
+}
+
+.brand-logo{
+    max-height: 100px;
+    object-fit: cover;
+    margin: auto;
+}

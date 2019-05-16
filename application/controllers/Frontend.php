@@ -83,14 +83,14 @@ class Frontend extends CI_Controller {
         $data[Frontend::LISTSEPATU] = $itemModel->getByMerk($brand);
         if (!$data[Frontend::LISTSEPATU]) show_404();
 
-        echo "brand: $brand ";
-        echo "listsepatu : ";
-        var_dump($data[Frontend::LISTSEPATU]);
+        // echo "brand: $brand ";
+        // echo "listsepatu : ";
+        // var_dump($data[Frontend::LISTSEPATU]);
+        
         $data[Frontend::INITIAL] = $this->initial;
-
         // change view name as you want
         // best case if front end per brand use 1 view php only
-        //$this->load->view('merkfrontend', $data);
+        $this->load->view('brand', $data);
     }
     /* -----BRAND SEGMENT----- */
 

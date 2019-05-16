@@ -1,0 +1,9 @@
+body{
+    background-image: url('../background.jpg'); 
+    background-size: cover;
+}
+
+a.deco-none{
+    color:#000000;
+    text-decoration:none;
+}

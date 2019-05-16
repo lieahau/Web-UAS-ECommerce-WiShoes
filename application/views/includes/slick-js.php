@@ -2,14 +2,14 @@
 <script type="text/javascript" src="<?php echo base_url('assets/template/front/slick/slick.min.js');?>"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-      $('.brand-list').slick({
+      $('.slick-list').slick({
         dots: true,
         infinite: true,
         speed: 300,
         slidesToShow: 3,
         slidesToScroll: 2,
         autoplay: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 1000,
         responsive: [
         {
           breakpoint: 1024,

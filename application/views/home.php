@@ -1,13 +1,14 @@
-<!doctype html>
+<!doctype HTML>
 <html lang="en">
     <head>
-        <?php echo $initial['header'] ?>
-        <?php echo $initial['slickcss'] ?>
+        <?php echo $initial['header']; ?>
+        <?php echo $initial['slickcss']; ?>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/home.css');?>"/>
 
         <title>WiShoes - Home</title>
     </head>
-    <body style="background-image: url('assets/background.jpg'); background-size: cover;">
-        <?php echo $initial['navbar'] ?>
+    <body>
+        <?php echo $initial['navbar']; ?>
 
         <!-- Carousel -->
         <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
@@ -39,21 +40,16 @@
         </div>
 
         <!-- Brands -->
-        <div class="container-fluid bg-white px-5">
+        <div class="container-fluid bg-white px-5 brand-container">
             <div class="row">
-                <div class="col-md-12">
-                    <h2 class="title" style="text-align: center;"><strong>Popular Brands:</strong></h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col brand-list mt-2">
+                <div class="col slick-list mt-2">
                     <?php
                         foreach($listbrand as $brand){
                             $brandname = substr($brand, 0, strripos($brand, "."));
                             $imagebrand = base_url('assets/database/brands/'.$brand);
                             echo "<div class='p-1'>";
                                 echo "<a href='".site_url('brand/'.$brandname)."'>";
-                                    echo "<img src='".$imagebrand."' alt='".$brandname."' style='max-height: 100px; object-fit: cover; margin: auto;'/>";
+                                    echo "<img src='".$imagebrand."' alt='".$brandname."' class='brand-logo'/>";
                                 echo "</a>";
                             echo "</div>";
                         }
@@ -63,7 +59,7 @@
         </div>
 
         <!-- Footer -->
-        <?php echo $initial['footer'] ?>
-        <?php echo $initial['slickjs'] ?>
+        <?php echo $initial['footer']; ?>
+        <?php echo $initial['slickjs']; ?>
     </body>
 </html>
