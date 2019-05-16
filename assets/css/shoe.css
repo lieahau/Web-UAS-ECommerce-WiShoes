@@ -3,16 +3,16 @@ body{
     background-size: cover;
 }
 
-a.deco-none{
-    color:#000000;
-    text-decoration:none;
-}
-
 .harga{
     text-align: right;
     font-weight: 600;
 }
 
 .card{
-    max-width: 20rem;
+    max-width: 24rem;
+}
+
+#btn-cart{
+    color: white;
+    background-color: rgb(63, 56, 105)
 }

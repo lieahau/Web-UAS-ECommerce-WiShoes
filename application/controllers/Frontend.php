@@ -108,12 +108,12 @@ class Frontend extends CI_Controller {
         $data[Frontend::SEPATU] = $itemModel->getById($id);
         if (!$data[Frontend::SEPATU]) show_404();
 
-        echo "shoe id: $id";
-        echo "shoe content : ";
-        var_dump($data[Frontend::SEPATU]);
+        // echo "shoe id: $id";
+        // echo "shoe content : ";
+        // var_dump($data[Frontend::SEPATU]);
         $data[Frontend::INITIAL] = $this->initial;
         // change view name as you want
-        //$this->load->view('sepatufrontend', $data);
+        $this->load->view('shoe', $data);
     }
     /* -----SHOE SEGMENT----- */
 

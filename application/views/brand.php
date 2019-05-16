@@ -17,14 +17,14 @@
                             foreach($listsepatu as $sepatu){
                                 $imageshoe = base_url('assets/database/shoes/'.$sepatu->merk.'/'.$sepatu->image);
 
-                                echo "<div class='card' style='max-width: 20rem;'>";
+                                echo "<div class='card'>";
                                     echo "<a href='".site_url('shoe/'.$sepatu->id)."' class='deco-none'>";
                                         echo "<img class='card-img-top' src='".$imageshoe."' />";
                                         echo "<div class='card-body'>";
                                             echo "<h5 class='card-title'>".$sepatu->Nama."</h5>";
                                             echo "<hr/>";
                                             echo "<p class='card-text jenis'>".$sepatu->jenis."</p>";
-                                            echo "<p class='card-text harga'><large>Rp. ".number_format($sepatu->harga_satuan,2,',','.')."</large></p>";
+                                            echo "<p class='card-text harga'>Rp. ".number_format($sepatu->harga_satuan,2,',','.')."</p>";
                                         echo "</div>";
                                     echo "</a>";
                                 echo "</div>";
