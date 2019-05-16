@@ -1,0 +1,24 @@
+.navbar{
+    background-color: #e3f2fd;
+}
+
+.navbar-brand img{
+    max-width: 200px;
+}
+
+.navbar-nav .nav-item{
+    font-size: 18px;
+}
+
+.navbar-nav .nav-item.active .nav-link, .navbar-nav .nav-item .nav-link:hover{
+    color: #68a4cc;
+}
+
+.no-focus-outline input[type="search"]:focus, .no-focus-outline span button:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.no-focus-outline span button:hover{
+    color: #68a4cc;
+}

@@ -6,9 +6,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Frontend extends CI_Controller {
     public const LISTSEPATU = 'listsepatu';
     public const SEPATU = 'sepatu';
-    public const EMPTYSEARCH = 'null';
+    public const EMPTYSEARCH = '';
     public const LISTBRAND = 'listbrand';
     public const LISTCAROUSEL = 'listcarousel';
+    public const INITIAL = 'initial';
+    public $initial;
 
     public function __construct(){
         parent::__construct();
@@ -17,6 +19,15 @@ class Frontend extends CI_Controller {
         $this->load->model("user_model");
         $this->load->library('form_validation');
         $this->load->helper('directory');
+        $this->load->helper('url');
+
+        $this->initial = array(
+            'header' => $this->load->view('includes/header.php', NULL, TRUE),
+            'navbar' => $this->load->view('includes/navbar.php', NULL, TRUE),
+            'footer' => $this->load->view('includes/footer.php', NULL, TRUE),
+            'slickcss' => $this->load->view('includes/slick-css.php', NULL, TRUE),
+            'slickjs' => $this->load->view('includes/slick-js.php', NULL, TRUE)
+        );
     }
 
     /* -----HOME SEGMENT----- */
@@ -55,6 +66,7 @@ class Frontend extends CI_Controller {
         // comment this var dump to hide
         // var_dump($data[Frontend::LISTBRAND]);
         // var_dump($data[Frontend::LISTCAROUSEL]);
+        $data[Frontend::INITIAL] = $this->initial;
 		$this->load->view('home', $data);
     }
     /* -----HOME SEGMENT----- */
@@ -74,6 +86,7 @@ class Frontend extends CI_Controller {
         echo "brand: $brand ";
         echo "listsepatu : ";
         var_dump($data[Frontend::LISTSEPATU]);
+        $data[Frontend::INITIAL] = $this->initial;
 
         // change view name as you want
         // best case if front end per brand use 1 view php only
@@ -97,7 +110,7 @@ class Frontend extends CI_Controller {
         echo "shoe id: $id";
         echo "shoe content : ";
         var_dump($data[Frontend::SEPATU]);
-
+        $data[Frontend::INITIAL] = $this->initial;
         // change view name as you want
         //$this->load->view('sepatufrontend', $data);
     }
@@ -107,7 +120,7 @@ class Frontend extends CI_Controller {
     // show list of searched products
     // route: index.php/shoe
     // route: index.php/shoe/$something
-    public function search($something)
+    public function search($something = '')
 	{
         $itemModel = $this->item_model;
 
@@ -128,8 +141,22 @@ class Frontend extends CI_Controller {
             var_dump($data[Frontend::LISTSEPATU]);
         }
 
+        $data[Frontend::INITIAL] = $this->initial;
         // change view name as you want
         //$this->load->view('searchfrontend', $data);
+    }
+
+    // utility for form to redirect
+    public function browse()
+    {
+        $search = $this->input->post("search");
+
+        if(isset($search)){
+            redirect(base_url('index.php/search/'.$search));
+        }
+        else{
+            redirect(base_url("index.php"));
+        }
     }
     /* -----SEARCH SEGMENT----- */
 
