@@ -127,23 +127,23 @@ class Frontend extends CI_Controller {
         // show all product if $something empty
         // show search result if not empty
         if($something == Frontend::EMPTYSEARCH){
-            echo "show all list of sepatu";
-            $data[Frontend::LISTSEPATU] = $itemModel->getAll();
+            // echo "show all list of sepatu";
+            // $data[Frontend::LISTSEPATU] = $itemModel->getAll();
             
-            echo "listsepatu : ";
-            var_dump($data[Frontend::LISTSEPATU]);
+            // echo "listsepatu : ";
+            // var_dump($data[Frontend::LISTSEPATU]);
         }
         else{
             $data[Frontend::LISTSEPATU] = $itemModel->searchByName($something);
 
-            echo "search: $something";
-            echo "listsepatu : ";
-            var_dump($data[Frontend::LISTSEPATU]);
+            // echo "search: $something";
+            // echo "listsepatu : ";
+            // var_dump($data[Frontend::LISTSEPATU]);
         }
 
         $data[Frontend::INITIAL] = $this->initial;
         // change view name as you want
-        //$this->load->view('searchfrontend', $data);
+        $this->load->view('search', $data);
     }
 
     // utility for form to redirect

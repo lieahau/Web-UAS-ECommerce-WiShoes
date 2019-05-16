@@ -3,7 +3,7 @@
     <head>
         <?php echo $initial['header']; ?>
         <?php echo $initial['slickcss']; ?>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/brand.css');?>"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/search.css');?>"/>
 
         <title>WiShoes - Brand</title>
     </head>
