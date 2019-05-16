@@ -1,0 +1,79 @@
+@font-face{
+    font-family: BreeSerif;
+    src: url("../fonts/Bree-serif/BreeSerif-Regular.otf");
+}
+
+@font-face{
+    font-family: Antipasto;
+    src: url("../fonts/Antipasto/AntipastoPro-DemiBold_trial.ttf");
+}
+
+body{
+    background-image: url('../background.jpg'); 
+    background-size: cover;
+    font-family: BreeSerif;
+}
+
+.font-antipasto{
+    font-family: Antipasto;
+}
+
+.form-control:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.form-input-icon{
+    width: 16px;
+    height: 16px;
+}
+
+.signup-form{
+    background-color: white;
+    border-radius: 15px;
+}
+
+.signup-form .signup-form-header h1{
+    color: #224587;
+}
+
+.signup-form .signup-form-body > div > .input-group-prepend > .input-group-text{
+    border: none;
+    background-color: #adc7e8;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.signup-form .signup-form-body > div > input{
+    border: none;
+    background-color: #adc7e8;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.signup-form-name{
+    width: 100%;
+}
+
+.signup-form-name > div > input{
+    border: none;
+    background-color: #adc7e8;
+    border-radius: 10px;
+}
+
+.signup-form-name > div > input:focus{
+    background-color: #adc7e8;
+}
+
+.signup-form .btn-signup{
+    background-color: #224587;
+    border-radius: 15px;
+}
+
+.signup-form .text-button{
+    color: white;
+}
+
+.signin-link h2 a{
+    text-decoration: none;
+}

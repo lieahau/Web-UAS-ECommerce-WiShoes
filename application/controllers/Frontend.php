@@ -170,10 +170,11 @@ class Frontend extends CI_Controller {
         if(isset($_SESSION['email'])){
             redirect(base_url("index.php"));
         }
-        echo 'this is signup';
+        //echo 'this is signup';
 
+        $data[Frontend::INITIAL] = $this->initial;
 		// change view name as you want
-        //$this->load->view('signupfrontend');
+        $this->load->view('signup', $data);
 
         // when post signin data use /index.php/signinhandle
         // when signout use /index.php/signout
@@ -184,9 +185,11 @@ class Frontend extends CI_Controller {
         if(isset($_SESSION['email'])){
             redirect(base_url("index.php"));
         }
-        echo 'this is signin';
+        //echo 'this is signin';
+
+        $data[Frontend::INITIAL] = $this->initial;
 		// change view name as you want
-        //$this->load->view('signinfrontend');
+        $this->load->view('signinfrontend', $data);
 
         // when post signin data use /index.php/signinhandle
         // when signout use /index.php/signout

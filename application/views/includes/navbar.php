@@ -8,13 +8,13 @@
     <div class="collapse navbar-collapse" id="navbarToggler">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href='<?php echo base_url("index.php"); ?>'>Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" style="color-danger">Sign Up</a>
+                <a class="nav-link" href='<?php echo site_url('signup') ?>' style="color-danger">Sign Up</a>
             </li>
         </ul>
-        <form class="form-inline mr-2 my-2" action="<?php echo site_url('frontend/browse'); ?>" method="post">
+        <form class="form-inline mr-2 my-2" action="<?php echo site_url('frontend/browse'); ?>" method="POST">
             <div class="input-group no-focus-outline">
               <input class="form-control py-2 border-left-0 border" id="input-search" type="search" name="search" placeholder="Search..." />
               <span class="input-group-append">
