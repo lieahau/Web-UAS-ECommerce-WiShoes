@@ -42,6 +42,11 @@
         <!-- Brands -->
         <div class="container-fluid bg-white px-5 brand-container">
             <div class="row">
+                <div class="col-md-12">
+                    <h2 class="title" style="text-align: center;"><strong>Popular Brands:</strong></h2>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col slick-list mt-2">
                     <?php
                         foreach($listbrand as $brand){
