@@ -25,13 +25,12 @@ class Login_model extends CI_Model{
 		return $query->num_rows();
 	}
 
-	public function loginUser(){
+	public function loginFrontend(){
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
 		$where = array(
 			"email" => $email,
-			"password" => md5($password),
-			"status" => "User"
+			"password" => md5($password)
 		);
 		$query = $this->db->get_where($this->_table,$where);
 		return $query->num_rows();

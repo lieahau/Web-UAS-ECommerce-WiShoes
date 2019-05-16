@@ -9,6 +9,7 @@ class Frontend extends CI_Controller {
     public const EMPTYSEARCH = '';
     public const LISTBRAND = 'listbrand';
     public const LISTCAROUSEL = 'listcarousel';
+    public const USERDATA = 'userdata';
     public const INITIAL = 'initial';
     public $initial;
 
@@ -201,15 +202,8 @@ class Frontend extends CI_Controller {
     // route: index.php/signuphandle
     public function signupHandle()
 	{
-        $is_unique = '|is_unique[user.email]';
         $user = $this->user_model;
-        $validation = $this->form_validation;
-        $validation->set_rules($user->rules($is_unique));
-
-        if ($validation->run()) {
-            $user->signup();
-            $this->session->set_flashdata('success', 'Success creating your account');
-        }
+        $user->signup();
 
         redirect(base_url("index.php"));
     }
@@ -221,22 +215,16 @@ class Frontend extends CI_Controller {
     public function signinHandle()
 	{
         $model = $this->Login_model;
-        $validation = $this->form_validation;
-        $validation->set_rules($model->rules());
-        
-        if($validation->run()){
-            $valid = $model->loginUser();
-            if($valid>0){
-                $data = array(
-                    "email"=>$this->input->post("email")
-                );
-                $this->session->set_userdata($data);
-                redirect(base_url("index.php"));
-                
-            }
-            else{
-                echo "Login Failed";
-            }
+        $valid = $model->loginFrontend();
+        if($valid>0){
+            $data = array(
+                "email"=>$this->input->post("email")
+            );
+            $this->session->set_userdata($data);
+            redirect(base_url("index.php"));        
+        }
+        else{
+            echo "Login Failed";
         }
     }
 
@@ -249,4 +237,32 @@ class Frontend extends CI_Controller {
 		redirect(base_url());
     }
     /* -----AUTHENTICATION SEGMENT----- */
+
+    /* -----PAYMENT SEGMENT----- */
+    public function cart(){
+        if(!isset($_SESSION['email'])){
+            redirect(base_url("index.php"));
+        }
+        $user = $this->user_model;
+        $data[Frontend::USERDATA] = $user->getUserDataByEmail($_SESSION['email']);
+        $data[Frontend::INITIAL] = $this->initial;
+        var_dump($data[Frontend::USERDATA]);
+
+        // change view name as you want
+        //$this->load->view('cartfrontend', $data);
+    }
+
+    public function payment(){
+        if(!isset($_SESSION['email'])){
+            redirect(base_url("index.php"));
+        }
+        $user = $this->user_model;
+        $data[Frontend::USERDATA] = $user->getUserDataByEmail($_SESSION['email']);
+        $data[Frontend::INITIAL] = $this->initial;
+        var_dump($data[Frontend::USERDATA]);
+
+        // change view name as you want
+        //$this->load->view('paymentfrontend', $data);
+    }
+    /* -----PAYMENT SEGMENT----- */
 }
