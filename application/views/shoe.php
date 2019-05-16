@@ -24,21 +24,37 @@
                     </div>
                 </div>
                 <div class="col-md-4 mr-auto my-auto">
-                    <h2 class="align-middle">Choose Your Size :</h2>
+                    <?php
+                        if(!empty($this->session->userdata('email')))
+                        {
+                            echo "<h2 class='align-middle'>Choose Your Size :</h2>";
+                        }
+                    ?>
                     <div class="row">
-                        <form class="col" action="<?php echo site_url('frontend/cart'); ?>" method="POST">
-                            <div class="btn-group dropdown">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Choose Size
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#"><?php echo $sepatu->ukuran; ?></a></li>
-                                </div>
-                            </div>
-                            <button class="btn my-3" id="btn-cart" type="submit" name="submit">
-                                Add to Cart
-                            </button>
-                        </form>
+                        <?php 
+                            if(!empty($this->session->userdata('email')))
+                            {
+                        ?>
+                                <form class="col" action="<?php echo site_url('frontend/cart'); ?>" method="POST">
+                                    <div class="btn-group dropdown">
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Choose Size
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#"><?php echo $sepatu->ukuran; ?></a></li>
+                                        </div>
+                                    </div>
+                                    <button class="btn my-3" id="btn-cart" type="submit" name="submit">
+                                        Add to Cart
+                                    </button>
+                                </form>
+                        <?php
+                            }
+                            else
+                            {
+                                echo "<h2 class='align-middle text-danger'>You Need to Login to Buy.</h2>";
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
