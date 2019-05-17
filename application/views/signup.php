@@ -77,7 +77,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="form-input-icon fas fa-phone"></i></span>
                                 </div>
-                                <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="PHONE NUMBER" required>
+                                <input type="number" class="form-control" id="no_telp" name="no_telp" placeholder="PHONE NUMBER" required>
                             </div>
                             <!-- END PHONE -->
                         </div>
