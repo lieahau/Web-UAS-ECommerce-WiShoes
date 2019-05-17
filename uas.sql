@@ -92,7 +92,7 @@ INSERT INTO `pembelian` (`id`, `id_supplier`, `timestamp`, `pajak`, `diskon`, `t
 CREATE TABLE `penjualan` (
   `id` int(8) NOT NULL,
   `id_user` int(8) NOT NULL,
-  `timestamp` date NOT NULL,
+  `timestamp` date NULL,
   `total_harga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

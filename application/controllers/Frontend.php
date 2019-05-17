@@ -9,7 +9,9 @@ class Frontend extends CI_Controller {
     public const EMPTYSEARCH = '';
     public const LISTBRAND = 'listbrand';
     public const LISTCAROUSEL = 'listcarousel';
+    public const LISTCART = 'listcart';
     public const USERDATA = 'userdata';
+    public const TOTALPRICE = 'totalprice';
     public const INITIAL = 'initial';
     public $initial;
 
@@ -18,6 +20,7 @@ class Frontend extends CI_Controller {
         $this->load->model("item_model");
         $this->load->model("Login_model");
         $this->load->model("user_model");
+        $this->load->model("Payment_model");
         $this->load->library('form_validation');
         $this->load->helper('directory');
         $this->load->helper('url');
@@ -244,12 +247,52 @@ class Frontend extends CI_Controller {
             redirect(base_url("index.php"));
         }
         $user = $this->user_model;
+        $payment = $this->Payment_model;
+        $itemModel = $this->item_model;
+
         $data[Frontend::USERDATA] = $user->getUserDataByEmail($_SESSION['email']);
+        $data[Frontend::LISTCART] = $payment->getCart($user->getIdByEmail($_SESSION['email'])->id);
+        $data[Frontend::TOTALPRICE] = $payment->getCartTotal($user->getIdByEmail($_SESSION['email'])->id);
+        foreach($data[Frontend::LISTCART] as $row){
+            $row->detail = $itemModel->getById($row->id_sepatu);
+        }
+
         $data[Frontend::INITIAL] = $this->initial;
         var_dump($data[Frontend::USERDATA]);
+        echo "<br>";
+        var_dump($data[Frontend::LISTCART]);
+        echo "<br>";
+        var_dump($data[Frontend::TOTALPRICE]);
 
         // change view name as you want
         //$this->load->view('cartfrontend', $data);
+    }
+
+    public function addcart(){
+        if(!isset($_SESSION['email'])){
+            redirect(base_url("index.php"));
+        }
+        $user = $this->user_model;
+        $payment = $this->Payment_model;
+        $payment->addCart($user->getIdByEmail($_SESSION['email'])->id);
+    }
+
+    public function removeCart($id){
+        if(!isset($_SESSION['email'])){
+            redirect(base_url("index.php"));
+        }
+        $user = $this->user_model;
+        $payment = $this->Payment_model;
+        $payment->removeCart($user->getIdByEmail($_SESSION['email'])->id, $id);
+    }
+
+    public function removeAllCart(){
+        if(!isset($_SESSION['email'])){
+            redirect(base_url("index.php"));
+        }
+        $user = $this->user_model;
+        $payment = $this->Payment_model;
+        $payment->removeAllCart($user->getIdByEmail($_SESSION['email'])->id);
     }
 
     public function payment(){
@@ -257,9 +300,16 @@ class Frontend extends CI_Controller {
             redirect(base_url("index.php"));
         }
         $user = $this->user_model;
+        $payment = $this->Payment_model;
+        $itemModel = $this->item_model;
+
         $data[Frontend::USERDATA] = $user->getUserDataByEmail($_SESSION['email']);
+        $data[Frontend::TOTALPRICE] = $payment->getCartTotal($user->getIdByEmail($_SESSION['email'])->id);
+        
         $data[Frontend::INITIAL] = $this->initial;
         var_dump($data[Frontend::USERDATA]);
+        echo "<br>";
+        var_dump($data[Frontend::TOTALPRICE]);
 
         // change view name as you want
         //$this->load->view('paymentfrontend', $data);
