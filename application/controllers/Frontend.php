@@ -127,9 +127,9 @@ class Frontend extends CI_Controller {
 
         // show all product if $something empty
         // show search result if not empty
-        if($something == Frontend::EMPTYSEARCH){
+        if($something === Frontend::EMPTYSEARCH){
             // echo "show all list of sepatu";
-            // $data[Frontend::LISTSEPATU] = $itemModel->getAll();
+            $data[Frontend::LISTSEPATU] = $itemModel->getAll();
             
             // echo "listsepatu : ";
             // var_dump($data[Frontend::LISTSEPATU]);
