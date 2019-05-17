@@ -12,3 +12,7 @@ a.deco-none{
     text-align: right;
     font-weight: 600;
 }
+
+.card{
+    max-width: 20rem;
+}

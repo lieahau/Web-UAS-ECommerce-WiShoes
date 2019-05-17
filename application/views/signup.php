@@ -56,10 +56,10 @@
                             <div class="col-10 input-group py-1">
                                 <div class="form-row signup-form-name">
                                     <div class="col">
-                                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="FIRST NAME" required>
+                                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="FIRST NAME" required>
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="LAST NAME" required>
+                                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="LAST NAME" required>
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="form-input-icon fas fa-street-view"></i></span>
                                 </div>
-                                <input type="text" class="form-control" id="address" name="address" placeholder="ADDRESS" required>
+                                <input type="text" class="form-control" id="alamat" name="alamat" placeholder="ADDRESS" required>
                             </div>
                             <!-- END ADDRESS -->
                             <!-- START PHONE -->
@@ -77,7 +77,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="form-input-icon fas fa-phone"></i></span>
                                 </div>
-                                <input type="text" class="form-control" id="phone" name="phone" placeholder="PHONE NUMBER" required>
+                                <input type="number" class="form-control" id="no_telp" name="no_telp" placeholder="PHONE NUMBER" required>
                             </div>
                             <!-- END PHONE -->
                         </div>
