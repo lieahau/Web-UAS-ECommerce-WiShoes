@@ -10,16 +10,22 @@
             <li class="nav-item">
                 <a class="nav-link" href='<?php echo base_url("index.php"); ?>'>Home</a>
             </li>
-            <li class="nav-item">
-                <?php
-                    if(empty($this->session->userdata('email'))){
+            <?php
+                if(empty($this->session->userdata('email'))){
+                    echo "<li class='nav-item'>";
                         echo "<a class='nav-link' href='".site_url('signup')."'>Sign Up</a>";
-                    }
-                    else{
+                    echo "</li>";
+                }
+                else{
+                    echo "<li class='nav-item'>";
+                        echo "<a class='nav-link' href='".site_url('cart')."'>My Cart</a>";
+                    echo "</li>";
+
+                    echo "<li class='nav-item'>";
                         echo "<a class='nav-link text-danger' href='".site_url('signout')."'>Sign Out</a>";
-                    }
-                ?>
-            </li>
+                    echo "</li>";
+                }
+            ?>
         </ul>
         <form class="form-inline mr-2 my-2" action="<?php echo site_url('frontend/browse'); ?>" method="POST">
             <div class="input-group no-focus-outline">
