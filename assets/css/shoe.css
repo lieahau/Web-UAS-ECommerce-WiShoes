@@ -2,7 +2,9 @@ body{
     background-image: url('../background.jpg'); 
     background-size: cover;
 }
-
+a.deco-none{
+	text-decoration: none;
+}
 .harga{
     text-align: right;
     font-weight: 600;

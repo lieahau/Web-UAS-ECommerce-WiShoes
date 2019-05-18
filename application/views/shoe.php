@@ -71,7 +71,7 @@
                         {
                             echo "<div class='row'>";
                                 echo "<div class='col'>";
-                                    echo "<h2 class='align-middle text-danger'>You Need to Login to Buy this Product.</h2>";
+                                    echo "<h2 class='align-middle text-danger'>You Need to <a class='deco-none' href='".site_url('frontend/signin')."'>Sign In</a> to Buy this Product.</h2>";
                                 echo "</div>";
                             echo "</div>";
                         }
