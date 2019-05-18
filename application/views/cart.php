@@ -73,6 +73,8 @@
                                             <div class="summary-item"><span class="text">Shipping</span><span class="price">Rp. 0,00</span></div>
                                             <div class="summary-item"><span class="text">Total</span><span class="price"><?php echo "Rp. ".number_format($totalprice,2,',','.'); ?></span></div>
                                             <button type="button" id="checkout" class="btn btn-primary btn-lg btn-block" <?php if(!isset($listcart)) echo 'disabled'; ?> >Checkout</button>
+                                            <a href='<?php echo base_url("index.php"); ?>' class="deco-none"><button type="button" id="continueShopping" class="btn btn-success btn-lg btn-block">Continue Shopping</button></a>
+                                            <a href='<?php echo site_url("frontend/removeAllCart"); ?>' class="deco-none"><button type="button" id="clearCart" class="btn btn-danger btn-lg btn-block">Clear Cart</button></a>
                                         </div>
                                     </div>
                                 </div> 

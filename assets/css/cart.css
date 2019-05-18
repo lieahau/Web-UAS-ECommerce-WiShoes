@@ -3,6 +3,10 @@ body{
     background-size: cover;
 }
 
+a.deco-none{
+	text-decoration: none;
+}
+
 .shopping-cart{
 	padding-bottom: 50px;
 	font-family: 'Montserrat', sans-serif;
