@@ -48,8 +48,7 @@
                 $penjualanid = $this->db
                                 ->select('id')
                                 ->get_where($this->_tablepenjualan, ["id_user" => $userid, "timestamp" => NULL])
-                                ->row()
-                                ->id;
+                                ->row();
             }
             
             $harga = $this->db
@@ -59,7 +58,7 @@
                         ->harga_satuan * $post["jumlah"];
             
             $data->id_sepatu = $post["id_sepatu"];
-            $data->id_penjualan = $penjualanid;
+            $data->id_penjualan = $penjualanid->id;
             $data->jumlah = $post["jumlah"];
             $data->harga = $harga;
             
