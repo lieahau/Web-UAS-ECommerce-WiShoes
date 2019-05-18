@@ -59,7 +59,7 @@
                         </div>
                     <?php
                         }
-                        else if($sepatu->stok > 0)
+                        else if($sepatu->stok == 0)
                         {
                             echo "<div class='row'>";
                                 echo "<div class='col'>";
