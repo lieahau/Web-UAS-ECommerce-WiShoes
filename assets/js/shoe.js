@@ -11,8 +11,4 @@ $(document).ready(function(){
 
     });
 
-    // ADD TO CART
-    $('#btn-cart').click(function(){
-        
-    });
 })

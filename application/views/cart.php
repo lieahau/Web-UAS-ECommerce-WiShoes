@@ -8,14 +8,14 @@
     </head>
     <body>
         <?php echo $initial['navbar']; ?>
-    
+<?php var_dump('listcart'); ?>
         <div class="container">
             <div class="row">
                 <div class="col-10 mx-auto py-5">
                     <section class="shopping-cart dark">
                         <div class="container">
                             <div class="block-heading">
-                                <h2>Hello, <?php echo "FIRST NAME USER"; ?></h2>
+                                <h2>Hello, <?php echo $userdata->first_name; ?></h2>
                                 <p>Here is your shopping cart.</p>
                             </div>
                             <div class="content">

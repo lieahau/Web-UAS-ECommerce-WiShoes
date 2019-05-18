@@ -83,5 +83,22 @@
         <!-- Footer -->
         <?php echo $initial['footer']; ?>
         <script type="text/javascript" src="<?php echo base_url('assets/js/shoe.js');?>"></script>
+        <script type="text/javascript" >
+            $(document).ready(function(){
+                // ADD TO CART
+                $('#btn-cart').click(function(){
+                    $.ajax({
+                        type: 'POST',
+                        url: "<?php echo site_url('frontend/addcart');?>",
+                        data:
+                        { 
+                            'id_sepatu': <?php echo $sepatu->id; ?>,
+                            'jumlah': $('#qtyRange').val()
+                        }
+                    });
+                });
+            });
+        </script>
+
     </body>
 </html>
