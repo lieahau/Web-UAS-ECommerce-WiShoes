@@ -23,51 +23,65 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mr-auto my-auto">
+                <div class="col-md-6 mr-auto my-auto">
+                        <?php 
+                            if(!empty($this->session->userdata('email')) && $sepatu->stok > 0)
+                            {
+                        ?>
+                        <div class="row size-container">
+                            <div class="col">
+                                <h2 class='align-middle'>Choose Your Size :</h2>
+                                <div class="btn-group dropdown dropdown-size">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Choose Size
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-size">
+                                        <li><a class="dropdown-item" href="#"><?php echo $sepatu->ukuran; ?></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row qty-container my-5">
+                            <div class="col">
+                                <h2 class='align-middle'>Choose Quantity :</h2>
+                                <div class="slidecontainer">
+                                    <input type="range" min="1" max='<?php echo $sepatu->stok; ?>' value="1" class="slider-qty" id="qtyRange">
+                                </div>
+                                <p>Value: <span id="qtyVal"></span></p>
+                            </div>
+                        </div>
+                        <div class="row add-cart-container">
+                            <div class="col">
+                                <button class="btn my-3" id="btn-cart" name="submit">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
                     <?php
-                        if(!empty($this->session->userdata('email')))
+                        }
+                        else if($sepatu->stok > 0)
                         {
-                            echo "<h2 class='align-middle'>Choose Your Size :</h2>";
+                            echo "<div class='row'>";
+                                echo "<div class='col'>";
+                                    echo "<h2 class='align-middle text-danger'>Sorry, this product is out of stock.</h2>";
+                                echo "</div>";
+                            echo "</div>";
+                        }
+                        else
+                        {
+                            echo "<div class='row'>";
+                                echo "<div class='col'>";
+                                    echo "<h2 class='align-middle text-danger'>You Need to Login to Buy this Product.</h2>";
+                                echo "</div>";
+                            echo "</div>";
                         }
                     ?>
-                    <div class="row">
-                        <?php 
-                            if(!empty($this->session->userdata('email')))
-                            {
-                        ?>
-                                <form class="col" action="<?php echo site_url('frontend/cart'); ?>" method="POST">
-                                    <div class="btn-group dropdown">
-                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Choose Size
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#"><?php echo $sepatu->ukuran; ?></a></li>
-                                        </div>
-                                    </div>
-                                    <button class="btn my-3" id="btn-cart" type="submit" name="submit">
-                                        Add to Cart
-                                    </button>
-                                </form>
-                        <?php
-                            }
-                            else
-                            {
-                                echo "<h2 class='align-middle text-danger'>You Need to Login to Buy.</h2>";
-                            }
-                        ?>
-                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Footer -->
         <?php echo $initial['footer']; ?>
-        <script>
-            $(document).ready(function(){
-                $(".dropdown-menu li a").click(function(){
-                    $(this).parents('.dropdown').find('.dropdown-toggle').html($(this).text());
-                });
-            })
-        </script>
+        <script type="text/javascript" src="<?php echo base_url('assets/js/shoe.js');?>"></script>
     </body>
 </html>

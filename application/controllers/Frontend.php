@@ -29,8 +29,6 @@ class Frontend extends CI_Controller {
             'header' => $this->load->view('includes/header.php', NULL, TRUE),
             'navbar' => $this->load->view('includes/navbar.php', NULL, TRUE),
             'footer' => $this->load->view('includes/footer.php', NULL, TRUE),
-            'slickcss' => $this->load->view('includes/slick-css.php', NULL, TRUE),
-            'slickjs' => $this->load->view('includes/slick-js.php', NULL, TRUE)
         );
     }
 
@@ -70,6 +68,8 @@ class Frontend extends CI_Controller {
         // comment this var dump to hide
         // var_dump($data[Frontend::LISTBRAND]);
         // var_dump($data[Frontend::LISTCAROUSEL]);
+        $this->initial['slickcss'] = $this->load->view('includes/slick-css.php', NULL, TRUE);
+        $this->initial['slickjs'] = $this->load->view('includes/slick-js.php', NULL, TRUE);
         $data[Frontend::INITIAL] = $this->initial;
 		$this->load->view('home', $data);
     }
@@ -91,6 +91,8 @@ class Frontend extends CI_Controller {
         // echo "listsepatu : ";
         // var_dump($data[Frontend::LISTSEPATU]);
         
+        $this->initial['slickcss'] = $this->load->view('includes/slick-css.php', NULL, TRUE);
+        $this->initial['slickjs'] = $this->load->view('includes/slick-js.php', NULL, TRUE);
         $data[Frontend::INITIAL] = $this->initial;
         // change view name as you want
         // best case if front end per brand use 1 view php only
@@ -145,6 +147,8 @@ class Frontend extends CI_Controller {
             // var_dump($data[Frontend::LISTSEPATU]);
         }
 
+        $this->initial['slickcss'] = $this->load->view('includes/slick-css.php', NULL, TRUE);
+        $this->initial['slickjs'] = $this->load->view('includes/slick-js.php', NULL, TRUE);
         $data[Frontend::INITIAL] = $this->initial;
         // change view name as you want
         $this->load->view('search', $data);
@@ -260,14 +264,14 @@ class Frontend extends CI_Controller {
         }
 
         $data[Frontend::INITIAL] = $this->initial;
-        var_dump($data[Frontend::USERDATA]);
-        echo "<br>";
-        var_dump($data[Frontend::LISTCART]);
-        echo "<br>";
-        var_dump($data[Frontend::TOTALPRICE]);
+        // var_dump($data[Frontend::USERDATA]);
+        // echo "<br>";
+        // var_dump($data[Frontend::LISTCART]);
+        // echo "<br>";
+        // var_dump($data[Frontend::TOTALPRICE]);
 
         // change view name as you want
-        //$this->load->view('cartfrontend', $data);
+        $this->load->view('cart', $data);
     }
 
     public function addcart(){
