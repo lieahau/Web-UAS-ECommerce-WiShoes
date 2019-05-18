@@ -1,9 +1,4 @@
 $(document).ready(function(){
-    // DELETE 1 PRODUCT
-    $('#delete').click(function(){
-        
-    });
-    
     // OPEN MODAL
     $('#checkout').click(function(){
         var buttonId = $(this).attr('id');

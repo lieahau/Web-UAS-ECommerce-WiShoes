@@ -51,7 +51,7 @@
                                                                             <span><?php echo number_format($product->harga,2,',','.'); ?></span>
                                                                         </div>
                                                                         <div class="col-md-1 delete">
-                                                                            <button id="delete" type="button" class="btn"><i class="fas fa-trash"></i></button>
+                                                                            <button type="button" class="btn btn-delete" data-id='<?php echo $product->id; ?>'><i class="fas fa-trash"></i></button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -106,10 +106,32 @@
         <script type="text/javascript" src="<?php echo base_url('assets/js/cart.js');?>"></script>
         <script type="text/javascript">
             $(document).ready(function(){
+                // CHECKOUT
                 $('#checkout').click(function(){
                     setTimeout(function () {
                         window.location.href = "<?php echo site_url('frontend/payment'); ?>";
                     }, 3000);
+                });
+
+                // DELETE 1 PRODUCT
+                $('.btn-delete').click(function(){
+                    $.ajax({
+                        type: 'POST',
+                        url: "<?php echo site_url('frontend/removeCart');?>",
+                        data:
+                        { 
+                            'id': $(this).data("id"),
+                        }
+                    }).done(
+                        function(){
+                            window.location.href = "<?php echo site_url('cart'); ?>";
+                        }
+                    )
+                    .fail(
+                        function(xhr, status, error){
+                            console.log(xhr.responseText);
+                        }
+                    );
                 });
             });
         </script>
