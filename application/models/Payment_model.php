@@ -10,12 +10,13 @@
             $penjualanid = $this->db
                                 ->select('id')
                                 ->get_where($this->_tablepenjualan, ["id_user" => $userid, "timestamp" => NULL])
-                                ->row()
-                                ->id;
+                                ->row();
+
+            if(!isset($penjualanid)) return NULL;
             // get cart list with sepatu detail
             $result = $this->db
                             ->select('id, id_sepatu, jumlah, harga')
-                            ->get_where($this->_tabledetailpenjualan, ["id_penjualan" => $penjualanid])
+                            ->get_where($this->_tabledetailpenjualan, ["id_penjualan" => $penjualanid->id])
                             ->result();
             
             return $result;
@@ -26,13 +27,16 @@
             $totalharga = $this->db
                                 ->select('total_harga')
                                 ->get_where($this->_tablepenjualan, ["id_user" => $userid, "timestamp" => NULL])
-                                ->row()
-                                ->total_harga;
-        
-            return $totalharga;
+                                ->row();
+            
+            if(!isset($totalharga)) return NULL;
+            return $totalharga->total_harga;
         }
 
         public function addCart($userid){
+            if(!isset($post["id_sepatu"]) && !isset($post["jumlah"]))
+                return;
+
             // check if cart penjualan exist if not then create one
             $penjualanid = $this->db
                                 ->select('id')
@@ -72,16 +76,16 @@
             $kurang = $this->db
                         ->select('harga')
                         ->get_where($this->_tabledetailpenjualan, ["id" => $id])
-                        ->row()
-                        ->harga;
+                        ->row();
+            
+            if(!isset($kurang)) return;
             
             $this->db->delete($this->_tabledetailpenjualan, ['id' => $id]);
-            
             $newHarga = $this->db
                         ->select('total_harga')
                         ->get_where($this->_tablepenjualan, ["id_user" => $userid, "timestamp" => NULL])
                         ->row();
-            $newHarga->total_harga -= $kurang;
+            $newHarga->total_harga -= $kurang->harga;
             $this->db->where('id_user', $userid)->update($this->_tablepenjualan, $newHarga);
         }
 
@@ -90,16 +94,16 @@
                                 ->select('id')
                                 ->get_where($this->_tablepenjualan, ["id_user" => $userid, "timestamp" => NULL])
                                 ->row();
-            if(isset($penjualanid)){
-                $this->db->delete($this->_tabledetailpenjualan, ['id_penjualan' => $penjualanid->id]);
-                
-                $newHarga = $this->db
-                        ->select('total_harga')
-                        ->get_where($this->_tablepenjualan, ["id_user" => $userid, "timestamp" => NULL])
-                        ->row();
-                $newHarga->total_harga = 0;
-                $this->db->where('id_user', $userid)->update($this->_tablepenjualan, $newHarga);
-            }
+
+            if(!isset($penjualanid)) return;
+            
+            $this->db->delete($this->_tabledetailpenjualan, ['id_penjualan' => $penjualanid->id]);    
+            $newHarga = $this->db
+                    ->select('total_harga')
+                    ->get_where($this->_tablepenjualan, ["id_user" => $userid, "timestamp" => NULL])
+                    ->row();
+            $newHarga->total_harga = 0;
+            $this->db->where('id_user', $userid)->update($this->_tablepenjualan, $newHarga);
         }
 
         public function checkout(){
