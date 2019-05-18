@@ -2,7 +2,7 @@ $(document).ready(function(){
     // DELETE 1 PRODUCT
     $('#delete').click(function(){
         
-    })
+    });
     
     // OPEN MODAL
     $('#checkout').click(function(){
@@ -14,11 +14,6 @@ $(document).ready(function(){
         setTimeout(function () {
             $(".check-icon").show();
         }, 1000);
-    })
-
-    // CLOSE MODAL
-    $('#modal-container').click(function(){
-        $(this).addClass('out');
-        $('body').removeClass('modal-active');
     });
+
 });

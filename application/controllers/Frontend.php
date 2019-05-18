@@ -310,11 +310,16 @@ class Frontend extends CI_Controller {
         if(!isset($_SESSION['email'])){
             redirect(base_url("index.php"));
         }
+        $user = $this->user_model;
         $payment = $this->Payment_model;
-        if($payment->checkout($user->getIdByEmail($_SESSION['email'])->id))
+        if($payment->checkout($user->getIdByEmail($_SESSION['email'])->id)){
             $this->output->set_status_header(200);
-        else
-            $this->output->set_status_header(500);
+            redirect(site_url("cart"));
+        }
+        else{
+            redirect(site_url("cart"));
+//            $this->output->set_status_header(500);
+        }
     }
     /* -----PAYMENT SEGMENT----- */
 }
