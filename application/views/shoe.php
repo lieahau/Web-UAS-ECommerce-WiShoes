@@ -52,7 +52,7 @@
                         </div>
                         <div class="row add-cart-container">
                             <div class="col">
-                                <button class="btn my-3" id="btn-cart" name="submit">
+                                <button class="btn my-3" id="btn-cart" name="submit" disabled>
                                     Add to Cart
                                 </button>
                             </div>
@@ -80,6 +80,23 @@
             </div>
         </div>
 
+        <!-- MODAL -->
+        <div id="modal-container">
+            <div class="modal-background">
+                <div class="modal">
+                    <div class="success-checkmark">
+                        <div class="check-icon">
+                            <span class="icon-line line-tip"></span>
+                            <span class="icon-line line-long"></span>
+                            <div class="icon-circle"></div>
+                            <div class="icon-fix"></div>
+                        </div>
+                    </div>
+                    <h2 class="mb-5">Success</h2>
+                </div>
+            </div>
+        </div>
+
         <!-- Footer -->
         <?php echo $initial['footer']; ?>
         <script type="text/javascript" src="<?php echo base_url('assets/js/shoe.js');?>"></script>
@@ -97,7 +114,16 @@
                         }
                     }).done(
                         function(){
-                            console.log('success insert to cart');
+                            $('#modal-container').removeAttr('class').addClass('add-cart');
+                            $('body').addClass('modal-active');
+
+                            $(".check-icon").hide();
+                            setTimeout(function () {
+                                $(".check-icon").show();
+                                setTimeout(function () {
+                                    window.location.href = "<?php echo site_url('cart'); ?>";
+                                }, 2000);
+                            }, 1000);
                         }
                     )
                     .fail(
