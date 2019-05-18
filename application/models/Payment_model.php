@@ -34,7 +34,7 @@
         }
 
         public function addCart($userid){
-            if(!isset($post["id_sepatu"]) && !isset($post["jumlah"]))
+            if(!isset($post["id_sepatu"]) || !isset($post["jumlah"]))
                 return;
 
             // check if cart penjualan exist if not then create one
@@ -106,8 +106,20 @@
             $this->db->where('id_user', $userid)->update($this->_tablepenjualan, $newHarga);
         }
 
-        public function checkout(){
+        public function checkout($userid){
+            $penjualanid = $this->db
+                                ->select('id')
+                                ->get_where($this->_tablepenjualan, ["id_user" => $userid, "timestamp" => NULL])
+                                ->row();
+
+            if(!isset($penjualanid)) return;
             
+            $newHarga = $this->db
+                    ->select('timestamp')
+                    ->get_where($this->_tablepenjualan, ["id_user" => $userid, "timestamp" => NULL])
+                    ->row();
+            $newHarga->timestamp = date("Y-m-d");
+            $this->db->where('id_user', $userid)->update($this->_tablepenjualan, $newHarga);
         }
 	}
 
