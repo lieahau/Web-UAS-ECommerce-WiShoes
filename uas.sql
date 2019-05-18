@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 15, 2019 at 06:47 PM
+-- Generation Time: May 18, 2019 at 07:27 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.11
 
@@ -96,14 +96,6 @@ CREATE TABLE `penjualan` (
   `total_harga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `penjualan`
---
-
-INSERT INTO `penjualan` (`id`, `id_user`, `timestamp`, `total_harga`) VALUES
-(1, 1, '2019-05-02', 20000),
-(2, 1, '2019-05-06', 100000);
-
 -- --------------------------------------------------------
 
 --
@@ -126,26 +118,26 @@ CREATE TABLE `sepatu` (
 --
 
 INSERT INTO `sepatu` (`id`, `Nama`, `merk`, `jenis`, `ukuran`, `stok`, `harga_satuan`, `image`) VALUES
-(18, 'Nike Flex 720', 'Nike', 'SportShoes', 38, 5, 1279000, '5cdc5389e7ddc.jpg'),
-(19, 'Nike Sholay Thong', 'Nike', 'Sandals', 40, 10, 313900, '5cdc544f65b05.jpg'),
-(20, 'Nike Epic React Flyknit', 'Nike', 'SportShoes', 39, 15, 2279000, '5cdc54867c789.jpg'),
-(21, 'Nike Renew Rival Shoes', 'Nike', 'SportShoes', 41, 12, 1199000, '5cdc550819aa2.jpg'),
-(22, 'Nike Flex 2018', 'Nike', 'RunningShoes', 40, 15, 767900, '5cdc552f52cf5.jpg'),
-(23, 'Adidas Lux 3', 'Adidas', 'RunningShoes', 39, 12, 1300000, '5cdc561eabd29.jpg'),
-(24, 'Adidas Duramo 9', 'Adidas', 'RunningShoes', 39, 12, 700000, '5cdc56582638b.jpg'),
-(25, 'Adidas Falcon', 'Adidas', 'RunningShoes', 42, 15, 650000, '5cdc567ad0a6e.jpg'),
-(26, 'Adidas Solar Lt Trainer', 'Adidas', 'SportShoes', 40, 5, 899900, '5cdc569e71ca1.jpg'),
-(27, 'Adidas Ultraboost', 'Adidas', 'SportShoes', 41, 7, 3000000, '5cdc57035e8bb.jpg'),
-(28, 'Skechers Dit-A', 'Skechers', 'SportShoes', 38, 5, 1199000, '5cdc580c2b6b9.jpg'),
-(29, 'Skechers Otg 400', 'Skechers', 'Sandals', 40, 8, 459000, '5cdc583225f0f.jpg'),
-(30, 'Skechers Sport Sandals', 'Skechers', 'Sandals', 39, 7, 659000, '5cdc584f6b806.jpg'),
-(31, 'Skechers Active', 'Skechers', 'SportShoes', 38, 10, 799900, '5cdc586f15cb8.jpg'),
-(32, 'Skechers D\'Lite', 'Skechers', 'SportShoes', 40, 16, 899000, '5cdc588f5b871.jpg'),
-(33, 'Vans Ua Era', 'Vans', 'FlatShoes', 38, 18, 899000, '5cdc58c5a954e.jpg'),
-(34, 'Vans Ua Old Skool', 'Vans', 'FlatShoes', 40, 37, 949000, '5cdc59355c6f4.jpg'),
-(35, 'Vans Ua Court Icon', 'Vans', 'FlatShoes', 38, 7, 999000, '5cdc5968c3de6.jpg'),
-(36, 'Vans Ua Authentic', 'Vans', 'FlatShoes', 38, 12, 674100, '5cdc599366ab2.jpg'),
-(38, 'Vans Ua Classic-Slip On', 'Vans', 'FlatShoes', 40, 10, 699000, '5cdc5a456c436.jpg');
+(1, 'Nike Flex 720', 'Nike', 'SportShoes', 38, 5, 1279000, '5cdc5389e7ddc.jpg'),
+(2, 'Nike Sholay Thong', 'Nike', 'Sandals', 40, 10, 313900, '5cdc544f65b05.jpg'),
+(3, 'Nike Epic React Flyknit', 'Nike', 'SportShoes', 39, 15, 2279000, '5cdc54867c789.jpg'),
+(4, 'Nike Renew Rival Shoes', 'Nike', 'SportShoes', 41, 12, 1199000, '5cdc550819aa2.jpg'),
+(5, 'Nike Flex 2018', 'Nike', 'RunningShoes', 40, 15, 767900, '5cdc552f52cf5.jpg'),
+(6, 'Adidas Lux 3', 'Adidas', 'RunningShoes', 39, 12, 1300000, '5cdc561eabd29.jpg'),
+(7, 'Adidas Duramo 9', 'Adidas', 'RunningShoes', 39, 12, 700000, '5cdc56582638b.jpg'),
+(8, 'Adidas Falcon', 'Adidas', 'RunningShoes', 42, 15, 650000, '5cdc567ad0a6e.jpg'),
+(9, 'Adidas Solar Lt Trainer', 'Adidas', 'SportShoes', 40, 5, 899900, '5cdc569e71ca1.jpg'),
+(10, 'Adidas Ultraboost', 'Adidas', 'SportShoes', 41, 7, 3000000, '5cdc57035e8bb.jpg'),
+(11, 'Skechers Dit-A', 'Skechers', 'SportShoes', 38, 5, 1199000, '5cdc580c2b6b9.jpg'),
+(12, 'Skechers Otg 400', 'Skechers', 'Sandals', 40, 8, 459000, '5cdc583225f0f.jpg'),
+(13, 'Skechers Sport Sandals', 'Skechers', 'Sandals', 39, 7, 659000, '5cdc584f6b806.jpg'),
+(14, 'Skechers Active', 'Skechers', 'SportShoes', 38, 10, 799900, '5cdc586f15cb8.jpg'),
+(15, 'Skechers D\'Lite', 'Skechers', 'SportShoes', 40, 16, 899000, '5cdc588f5b871.jpg'),
+(16, 'Vans Ua Era', 'Vans', 'FlatShoes', 38, 18, 899000, '5cdc58c5a954e.jpg'),
+(17, 'Vans Ua Old Skool', 'Vans', 'FlatShoes', 40, 37, 949000, '5cdc59355c6f4.jpg'),
+(18, 'Vans Ua Court Icon', 'Vans', 'FlatShoes', 38, 7, 999000, '5cdc5968c3de6.jpg'),
+(19, 'Vans Ua Authentic', 'Vans', 'FlatShoes', 38, 12, 674100, '5cdc599366ab2.jpg'),
+(20, 'Vans Ua Classic-Slip On', 'Vans', 'FlatShoes', 40, 10, 699000, '5cdc5a456c436.jpg');
 
 -- --------------------------------------------------------
 
@@ -172,19 +164,6 @@ INSERT INTO `supplier` (`id`, `nama`, `alamat`, `no_telp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `temp_pembelian`
---
-
-CREATE TABLE `temp_pembelian` (
-  `id` int(11) NOT NULL,
-  `id_sepatu` int(11) NOT NULL,
-  `jumlah` int(11) NOT NULL,
-  `harga` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `user`
 --
 
@@ -205,10 +184,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `email`, `password`, `status`, `first_name`, `last_name`, `alamat`, `no_telp`) VALUES
-(1, 'Halbert', 'Halbert@gmail.com', 'DW5555555', 'User', 'Hal', 'Bertrist', 'Jalan Dw, Jakarta Selata', '021021021'),
-(2, 'test', 'willy@gmail.com', '12345', 'Admin', 'willy', 'chua', 'jl.imbo', '089866'),
-(3, 'willy', 'willy@lol.com', '12345', 'Admin', 'willy', 'chua', 'jl imbon', '0808'),
-(4, 'budi', 'budi@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Admin', 'budi', 'bermain bola', 'jl.imbo', '0808');
+(1, 'budi', 'budi@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Admin', 'budi', 'bermain bola', 'jl.imbo', '0808');
 
 --
 -- Indexes for dumped tables
@@ -241,7 +217,8 @@ ALTER TABLE `pembelian`
 -- Indexes for table `penjualan`
 --
 ALTER TABLE `penjualan`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `penjualan_user_relation` (`id_user`);
 
 --
 -- Indexes for table `sepatu`
@@ -253,12 +230,6 @@ ALTER TABLE `sepatu`
 -- Indexes for table `supplier`
 --
 ALTER TABLE `supplier`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `temp_pembelian`
---
-ALTER TABLE `temp_pembelian`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -310,16 +281,40 @@ ALTER TABLE `supplier`
   MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `temp_pembelian`
---
-ALTER TABLE `temp_pembelian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `detail_pembelian`
+--
+ALTER TABLE `detail_pembelian`
+  ADD CONSTRAINT `pembelian_relation` FOREIGN KEY (`id_pembelian`) REFERENCES `pembelian` (`id`),
+  ADD CONSTRAINT `pembelian_sepatu_relation` FOREIGN KEY (`id_sepatu`) REFERENCES `sepatu` (`id`);
+
+--
+-- Constraints for table `detail_penjualan`
+--
+ALTER TABLE `detail_penjualan`
+  ADD CONSTRAINT `penjualan_relation` FOREIGN KEY (`id_penjualan`) REFERENCES `penjualan` (`id`),
+  ADD CONSTRAINT `penjualan_sepatu_relation` FOREIGN KEY (`id_sepatu`) REFERENCES `sepatu` (`id`);
+
+--
+-- Constraints for table `pembelian`
+--
+ALTER TABLE `pembelian`
+  ADD CONSTRAINT `supplier_relation` FOREIGN KEY (`id_supplier`) REFERENCES `supplier` (`id`);
+
+--
+-- Constraints for table `penjualan`
+--
+ALTER TABLE `penjualan`
+  ADD CONSTRAINT `penjualan_user_relation` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
