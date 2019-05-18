@@ -280,7 +280,10 @@ class Frontend extends CI_Controller {
         }
         $user = $this->user_model;
         $payment = $this->Payment_model;
-        $payment->addCart($user->getIdByEmail($_SESSION['email'])->id);
+        if($payment->addCart($user->getIdByEmail($_SESSION['email'])->id))
+            $this->output->set_status_header(200);
+        else
+            $this->output->set_status_header(500);
     }
 
     public function removeCart($id){
@@ -290,6 +293,7 @@ class Frontend extends CI_Controller {
         $user = $this->user_model;
         $payment = $this->Payment_model;
         $payment->removeCart($user->getIdByEmail($_SESSION['email'])->id, $id);
+        redirect(base_url("index.php/cart"));
     }
 
     public function removeAllCart(){
@@ -299,26 +303,18 @@ class Frontend extends CI_Controller {
         $user = $this->user_model;
         $payment = $this->Payment_model;
         $payment->removeAllCart($user->getIdByEmail($_SESSION['email'])->id);
+        redirect(base_url("index.php/cart"));
     }
 
     public function payment(){
         if(!isset($_SESSION['email'])){
             redirect(base_url("index.php"));
         }
-        $user = $this->user_model;
         $payment = $this->Payment_model;
-        $itemModel = $this->item_model;
-
-        $data[Frontend::USERDATA] = $user->getUserDataByEmail($_SESSION['email']);
-        $data[Frontend::TOTALPRICE] = $payment->getCartTotal($user->getIdByEmail($_SESSION['email'])->id);
-        
-        $data[Frontend::INITIAL] = $this->initial;
-        var_dump($data[Frontend::USERDATA]);
-        echo "<br>";
-        var_dump($data[Frontend::TOTALPRICE]);
-
-        // change view name as you want
-        //$this->load->view('paymentfrontend', $data);
+        if($payment->checkout($user->getIdByEmail($_SESSION['email'])->id))
+            $this->output->set_status_header(200);
+        else
+            $this->output->set_status_header(500);
     }
     /* -----PAYMENT SEGMENT----- */
 }

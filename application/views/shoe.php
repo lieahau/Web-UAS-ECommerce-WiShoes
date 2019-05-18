@@ -95,7 +95,16 @@
                             'id_sepatu': <?php echo $sepatu->id; ?>,
                             'jumlah': $('#qtyRange').val()
                         }
-                    });
+                    }).done(
+                        function(){
+                            console.log('success insert to cart');
+                        }
+                    )
+                    .fail(
+                        function(xhr, status, error){
+                            console.log(xhr.responseText);
+                        }
+                    );
                 });
             });
         </script>
