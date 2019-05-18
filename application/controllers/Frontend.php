@@ -286,14 +286,18 @@ class Frontend extends CI_Controller {
             $this->output->set_status_header(500);
     }
 
-    public function removeCart($id){
+    public function removeCart(){
         if(!isset($_SESSION['email'])){
             redirect(base_url("index.php"));
         }
+        $post = $this->input->post();
+
         $user = $this->user_model;
         $payment = $this->Payment_model;
-        $payment->removeCart($user->getIdByEmail($_SESSION['email'])->id, $id);
-        redirect(base_url("index.php/cart"));
+        if($payment->removeCart($user->getIdByEmail($_SESSION['email'])->id, $post['id']))
+            $this->output->set_status_header(200);
+        else
+            $this->output->set_status_header(500);
     }
 
     public function removeAllCart(){

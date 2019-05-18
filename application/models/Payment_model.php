@@ -54,64 +54,85 @@
             $harga = $this->db
                         ->select('harga_satuan')
                         ->get_where($this->_tablesepatu, ["id" => $post["id_sepatu"]])
-                        ->row()
-                        ->harga_satuan * $post["jumlah"];
-            
-            $data->id_sepatu = $post["id_sepatu"];
-            $data->id_penjualan = $penjualanid->id;
-            $data->jumlah = $post["jumlah"];
-            $data->harga = $harga;
-            
-            $this->db->insert($this->_tabledetailpenjualan, $data);
-            
-            $newHarga = $this->db
-                        ->select('total_harga')
-                        ->get_where($this->_tablepenjualan, ["id_user" => $userid, "timestamp" => NULL])
                         ->row();
-            $newHarga->total_harga += $harga;
-            $this->db->where('id_user', $userid)->update($this->_tablepenjualan, $newHarga);
+                        
+            $exist = $this->db
+                        ->get_where($this->_tabledetailpenjualan, ["id_penjualan" => $penjualanid->id, "id_sepatu" => $post["id_sepatu"]])
+                        ->row();
+            
+            // if exist item in detailpenjualan then update not insert
+            if(isset($exist)){
+                $data->jumlah = $exist->jumlah + $post['jumlah'];
+                $data->harga = $exist->harga + $harga->harga_satuan * $post["jumlah"];
+                $this->db->where('id', $exist->id)->update($this->_tabledetailpenjualan, $data);
+            }else{
+                $data->id_sepatu = $post["id_sepatu"];
+                $data->id_penjualan = $penjualanid->id;
+                $data->jumlah = $post["jumlah"];
+                $data->harga = $harga->harga_satuan * $post["jumlah"];
+                
+                $this->db->insert($this->_tabledetailpenjualan, $data);
+            }
+
+            $newHarga = $this->db
+                            ->select('total_harga')
+                            ->get_where($this->_tablepenjualan, ["id_user" => $userid, "timestamp" => NULL])
+                            ->row();
+
+            if(isset($exist))
+                $newHarga->total_harga += $harga->harga_satuan * $post["jumlah"];
+            else
+                $newHarga->total_harga += $data->harga;
+            
+            $this->db->where('id', $penjualanid->id)->update($this->_tablepenjualan, $newHarga);
             return TRUE;
         }
 
         public function removeCart($userid, $id){
+            if(!isset($id)) return FALSE;
+
             $kurang = $this->db
                         ->select('harga')
                         ->get_where($this->_tabledetailpenjualan, ["id" => $id])
                         ->row();
             
-            if(!isset($kurang)) return;
+            if(!isset($kurang)) return FALSE;
             
             $this->db->delete($this->_tabledetailpenjualan, ['id' => $id]);
-            $newHarga = $this->db
-                        ->select('total_harga')
+            $prevHarga = $this->db
+                        ->select('id, total_harga')
                         ->get_where($this->_tablepenjualan, ["id_user" => $userid, "timestamp" => NULL])
                         ->row();
-            $newHarga->total_harga -= $kurang->harga;
-            $this->db->where('id_user', $userid)->update($this->_tablepenjualan, $newHarga);
+            $newHarga->total_harga = $prevHarga->total_harga - $kurang->harga;
+            $this->db->where('id', $prevHarga->id)->update($this->_tablepenjualan, $newHarga);
+            
+            return TRUE;
         }
 
         public function removeAllCart($userid){
             $data = $this->db
-                            ->select('id')
-                            ->get_where($this->_tablepenjualan, ["id_user" => $userid, "timestamp" => NULL])
-                            ->row();
+                        ->select('id')
+                        ->get_where($this->_tablepenjualan, ["id_user" => $userid, "timestamp" => NULL])
+                        ->row();
 
             if(!isset($data)) return;
             
-            $this->db->delete($this->_tabledetailpenjualan, ['id_penjualan' => $data->id]);    
+            $this->db->delete($this->_tabledetailpenjualan, ['id_penjualan' => $data->id]);
             $newHarga->total_harga = 0;
-            $this->db->where('id_user', $userid)->update($this->_tablepenjualan, $newHarga);
+            $this->db->where('id', $data->id)->update($this->_tablepenjualan, $newHarga);
         }
 
         public function checkout($userid){
-            $newHarga = $this->db
-                    ->select('timestamp')
+            $penjualan = $this->db
+                    ->select('id, timestamp')
                     ->get_where($this->_tablepenjualan, ["id_user" => $userid, "timestamp" => NULL])
                     ->row();
                     
-            if(!isset($newHarga)) return FALSE;
-            $newHarga->timestamp = date("Y-m-d");
-            $this->db->where('id_user', $userid)->update($this->_tablepenjualan, $newHarga);
+            if(!isset($penjualan)) return FALSE;
+            $newData->timestamp = date("Y-m-d");
+            $this->db->where('id', $penjualan->id)
+                    ->update($this->_tablepenjualan, $newData);
+
             return TRUE;
         }
 	}

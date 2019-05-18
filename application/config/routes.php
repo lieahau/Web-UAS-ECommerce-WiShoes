@@ -58,6 +58,5 @@ $route['signout'] = 'frontend/signout';
 $route['search'] = 'frontend/search';
 $route['search/(:any)'] = 'frontend/search/$1';
 $route['cart'] = 'frontend/cart';
-$route['payment'] = 'frontend/payment';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
