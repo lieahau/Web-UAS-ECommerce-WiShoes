@@ -253,8 +253,10 @@ class Frontend extends CI_Controller {
         $data[Frontend::USERDATA] = $user->getUserDataByEmail($_SESSION['email']);
         $data[Frontend::LISTCART] = $payment->getCart($user->getIdByEmail($_SESSION['email'])->id);
         $data[Frontend::TOTALPRICE] = $payment->getCartTotal($user->getIdByEmail($_SESSION['email'])->id);
-        foreach($data[Frontend::LISTCART] as $row){
-            $row->detail = $itemModel->getById($row->id_sepatu);
+        if(isset($data[Frontend::LISTCART])){
+            foreach($data[Frontend::LISTCART] as $row){
+                $row->detail = $itemModel->getById($row->id_sepatu);
+            }
         }
 
         $data[Frontend::INITIAL] = $this->initial;
