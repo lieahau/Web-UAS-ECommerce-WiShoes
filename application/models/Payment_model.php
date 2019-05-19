@@ -61,6 +61,7 @@
                         ->row();
             
             // if exist item in detailpenjualan then update not insert
+            $data = new stdClass();
             if(isset($exist)){
                 $data->jumlah = $exist->jumlah + $post['jumlah'];
                 $data->harga = $exist->harga + $harga->harga_satuan * $post["jumlah"];
@@ -103,6 +104,7 @@
                         ->select('id, total_harga')
                         ->get_where($this->_tablepenjualan, ["id_user" => $userid, "timestamp" => NULL])
                         ->row();
+            $newHarga = new stdClass();
             $newHarga->total_harga = $prevHarga->total_harga - $kurang->harga;
             $this->db->where('id', $prevHarga->id)->update($this->_tablepenjualan, $newHarga);
             
@@ -118,6 +120,7 @@
             if(!isset($data)) return;
             
             $this->db->delete($this->_tabledetailpenjualan, ['id_penjualan' => $data->id]);
+            $newHarga = new stdClass();
             $newHarga->total_harga = 0;
             $this->db->where('id', $data->id)->update($this->_tablepenjualan, $newHarga);
         }
@@ -128,12 +131,29 @@
                     ->get_where($this->_tablepenjualan, ["id_user" => $userid, "timestamp" => NULL])
                     ->row();
                     
-            if(!isset($penjualan)) return FALSE;
+            if(!isset($penjualan)) return;
+            
+            // Checkout
+            $newData = new stdClass();
             $newData->timestamp = date("Y-m-d");
             $this->db->where('id', $penjualan->id)
                     ->update($this->_tablepenjualan, $newData);
-
-            return TRUE;
+            
+            // Decrease stock
+            $terjual = $this->db
+                        ->select('id_sepatu, jumlah')
+                        ->get_where($this->_tabledetailpenjualan, ["id_penjualan" => $penjualan->id])
+                        ->result();
+            foreach($terjual as $row){
+                $sepatu = $this->db
+                            ->select('stok')
+                            ->get_where($this->_tablesepatu, ["id" => $row->id_sepatu])
+                            ->row();
+                $sepatu->stok -= $row->jumlah;
+                $this->db
+                    ->where('id', $row->id_sepatu)
+                    ->update($this->_tablesepatu, $sepatu);
+            }
         }
 	}
 
