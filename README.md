@@ -2,8 +2,14 @@
 Pembuatan website e-commerce bernama "WiShoes" menggunakan framework CodeIgniter untuk proyek UAS mata kuliah Pemrograman Web
 
 Database: uas.sql
+CMS url path: /index.php/login
+CMS login:
+ - email: admin@wishoes.com
+ - password: 12345
+ 
+USER url path: /index.php/
 
-
+Developer:
 * Team :
 	* Frontend - UI/UX Design:
 		* Yunika Laurensia Winoto
