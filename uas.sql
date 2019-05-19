@@ -184,7 +184,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `email`, `password`, `status`, `first_name`, `last_name`, `alamat`, `no_telp`) VALUES
-(1, 'budi', 'budi@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Admin', 'budi', 'bermain bola', 'jl.imbo', '0808');
+(1, 'admin', 'admin@wishoes.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Admin', 'Admin', 'Admin', 'Jl. Admin', '0808');
 
 --
 -- Indexes for dumped tables
