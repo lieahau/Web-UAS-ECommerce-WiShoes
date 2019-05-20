@@ -4,15 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // 1 class for frontend
 // check config/routes.php for more route informations
 class Frontend extends CI_Controller {
-    public const LISTSEPATU = 'listsepatu';
-    public const SEPATU = 'sepatu';
-    public const EMPTYSEARCH = '';
-    public const LISTBRAND = 'listbrand';
-    public const LISTCAROUSEL = 'listcarousel';
-    public const LISTCART = 'listcart';
-    public const USERDATA = 'userdata';
-    public const TOTALPRICE = 'totalprice';
-    public const INITIAL = 'initial';
     public $initial;
 
     public function __construct(){
@@ -41,15 +32,15 @@ class Frontend extends CI_Controller {
 	{
         // get map of file in /assets/database/brands and /assets/database/carousels
         // then get brand and carousel images
-        $data[Frontend::LISTBRAND] = [];
-        $data[Frontend::LISTCAROUSEL] = [];
+        $data['listbrand'] = [];
+        $data['listcarousel'] = [];
         $itemModel = $this->item_model;
         $brand_assets = directory_map('./assets/database/brands/');
         $brands = $itemModel->getAllMerk();
         for($i = 0;$i < count($brand_assets); $i++){
             for($j = 0;$j < count($brands); $j++){
                 if(stripos($brand_assets[$i], $brands[$j]->merk) === 0){
-                    array_push($data[Frontend::LISTBRAND], $brand_assets[$i]);
+                    array_push($data['listbrand'], $brand_assets[$i]);
                     array_splice($brand_assets, $i, 1);
                     $i--;
                     array_splice($brands, $j, 1);
@@ -61,16 +52,16 @@ class Frontend extends CI_Controller {
         $carousel_assets = directory_map('./assets/database/carousels/');
         for($i = 0;$i < count($carousel_assets); $i++){
             if(stripos($carousel_assets[$i], 'carousel_') === 0){
-                array_push($data[Frontend::LISTCAROUSEL], $carousel_assets[$i]);
+                array_push($data['listcarousel'], $carousel_assets[$i]);
             }
         }
 
         // comment this var dump to hide
-        // var_dump($data[Frontend::LISTBRAND]);
-        // var_dump($data[Frontend::LISTCAROUSEL]);
+        // var_dump($data['listbrand']);
+        // var_dump($data['listcarousel']);
         $this->initial['slickcss'] = $this->load->view('includes/slick-css.php', NULL, TRUE);
         $this->initial['slickjs'] = $this->load->view('includes/slick-js.php', NULL, TRUE);
-        $data[Frontend::INITIAL] = $this->initial;
+        $data['initial'] = $this->initial;
 		$this->load->view('home', $data);
     }
     /* -----HOME SEGMENT----- */
@@ -83,17 +74,17 @@ class Frontend extends CI_Controller {
     {
         $itemModel = $this->item_model;
 
-        // use $data[Frontend::LISTSEPATU] to access list of sepatu for this brand
-        $data[Frontend::LISTSEPATU] = $itemModel->getByMerk($brand);
-        if (!$data[Frontend::LISTSEPATU]) show_404();
+        // use $data['listsepatu'] to access list of sepatu for this brand
+        $data['listsepatu'] = $itemModel->getByMerk($brand);
+        if (!$data['listsepatu']) show_404();
 
         // echo "brand: $brand ";
         // echo "listsepatu : ";
-        // var_dump($data[Frontend::LISTSEPATU]);
+        // var_dump($data['listsepatu']);
         
         $this->initial['slickcss'] = $this->load->view('includes/slick-css.php', NULL, TRUE);
         $this->initial['slickjs'] = $this->load->view('includes/slick-js.php', NULL, TRUE);
-        $data[Frontend::INITIAL] = $this->initial;
+        $data['initial'] = $this->initial;
         // change view name as you want
         // best case if front end per brand use 1 view php only
         $this->load->view('brand', $data);
@@ -109,14 +100,14 @@ class Frontend extends CI_Controller {
 	{
         $itemModel = $this->item_model;
 
-        // use $data[Frontend::SEPATU] to access sepatu content
-        $data[Frontend::SEPATU] = $itemModel->getById($id);
-        if (!$data[Frontend::SEPATU]) show_404();
+        // use $data['sepatu'] to access sepatu content
+        $data['sepatu'] = $itemModel->getById($id);
+        if (!$data['sepatu']) show_404();
 
         // echo "shoe id: $id";
         // echo "shoe content : ";
-        // var_dump($data[Frontend::SEPATU]);
-        $data[Frontend::INITIAL] = $this->initial;
+        // var_dump($data['sepatu']);
+        $data['initial'] = $this->initial;
         // change view name as you want
         $this->load->view('shoe', $data);
     }
@@ -132,24 +123,24 @@ class Frontend extends CI_Controller {
 
         // show all product if $something empty
         // show search result if not empty
-        if($something === Frontend::EMPTYSEARCH){
+        if($something === ''){
             // echo "show all list of sepatu";
-            $data[Frontend::LISTSEPATU] = $itemModel->getAll();
+            $data['listsepatu'] = $itemModel->getAll();
             
             // echo "listsepatu : ";
-            // var_dump($data[Frontend::LISTSEPATU]);
+            // var_dump($data['listsepatu']);
         }
         else{
-            $data[Frontend::LISTSEPATU] = $itemModel->searchByName($something);
+            $data['listsepatu'] = $itemModel->searchByName($something);
 
             // echo "search: $something";
             // echo "listsepatu : ";
-            // var_dump($data[Frontend::LISTSEPATU]);
+            // var_dump($data['listsepatu']);
         }
 
         $this->initial['slickcss'] = $this->load->view('includes/slick-css.php', NULL, TRUE);
         $this->initial['slickjs'] = $this->load->view('includes/slick-js.php', NULL, TRUE);
-        $data[Frontend::INITIAL] = $this->initial;
+        $data['initial'] = $this->initial;
         // change view name as you want
         $this->load->view('search', $data);
     }
@@ -180,7 +171,7 @@ class Frontend extends CI_Controller {
         }
         //echo 'this is signup';
 
-        $data[Frontend::INITIAL] = $this->initial;
+        $data['initial'] = $this->initial;
 		// change view name as you want
         $this->load->view('signup', $data);
 
@@ -195,7 +186,7 @@ class Frontend extends CI_Controller {
         }
         //echo 'this is signin';
 
-        $data[Frontend::INITIAL] = $this->initial;
+        $data['initial'] = $this->initial;
 		// change view name as you want
         $this->load->view('signinfrontend', $data);
 
@@ -254,21 +245,21 @@ class Frontend extends CI_Controller {
         $payment = $this->Payment_model;
         $itemModel = $this->item_model;
 
-        $data[Frontend::USERDATA] = $user->getUserDataByEmail($_SESSION['email']);
-        $data[Frontend::LISTCART] = $payment->getCart($user->getIdByEmail($_SESSION['email'])->id);
-        $data[Frontend::TOTALPRICE] = $payment->getCartTotal($user->getIdByEmail($_SESSION['email'])->id);
-        if(isset($data[Frontend::LISTCART])){
-            foreach($data[Frontend::LISTCART] as $row){
+        $data['userdata'] = $user->getUserDataByEmail($_SESSION['email']);
+        $data['listcart'] = $payment->getCart($user->getIdByEmail($_SESSION['email'])->id);
+        $data['totalprice'] = $payment->getCartTotal($user->getIdByEmail($_SESSION['email'])->id);
+        if(isset($data['listcart'])){
+            foreach($data['listcart'] as $row){
                 $row->detail = $itemModel->getById($row->id_sepatu);
             }
         }
 
-        $data[Frontend::INITIAL] = $this->initial;
-        // var_dump($data[Frontend::USERDATA]);
+        $data['initial'] = $this->initial;
+        // var_dump($data['userdata']);
         // echo "<br>";
-        // var_dump($data[Frontend::LISTCART]);
+        // var_dump($data['listcart']);
         // echo "<br>";
-        // var_dump($data[Frontend::TOTALPRICE]);
+        // var_dump($data['totalprice']);
 
         // change view name as you want
         $this->load->view('cart', $data);
