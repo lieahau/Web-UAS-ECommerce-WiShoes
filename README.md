@@ -1,6 +1,8 @@
 # Web-ECommerce-WiShoes
 Pembuatan website e-commerce bernama "WiShoes" menggunakan framework CodeIgniter untuk proyek UAS mata kuliah Pemrograman Web
 
+### Hosting Website: wishoes.epizy.com
+
 * Database: uas.sql
 
 * CMS url path: /index.php/login
